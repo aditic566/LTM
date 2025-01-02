@@ -2,14 +2,15 @@ package com.wecp.progressive.service;
 
 import com.wecp.progressive.entity.Warehouse;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface WarehouseService {
-    List<Warehouse> getAllWarehouses();
+    List<Warehouse> getAllWarehouses() throws SQLException;
 
-    int addWarehouse(Warehouse warehouse);
+    int addWarehouse(Warehouse warehouse) throws SQLException;
 
-    List<Warehouse> getWarehousesSortedByCapacity();
+    List<Warehouse> getWarehousesSortedByCapacity()throws SQLException;
 
     default public void emptyArrayList() {
     }

@@ -10,6 +10,7 @@ import com.wecp.progressive.service.SupplierService;
 public class SupplierServiceImplArraylist implements SupplierService {
     private static List<Supplier> supplierList=new ArrayList<>();
     
+    
     @Override
     public List<Supplier> getAllSuppliers() {
         return supplierList;

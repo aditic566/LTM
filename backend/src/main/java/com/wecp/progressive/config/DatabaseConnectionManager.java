@@ -23,9 +23,9 @@ public class DatabaseConnectionManager {
         }
     }
     public static Connection getConnection() throws SQLException{
-        String url=properties.getProperty("spring.database.url");
-        String user=properties.getProperty("spring.database.username");
-        String password=properties.getProperty("spring.database.password");
+        String url=properties.getProperty("spring.datasource.url");
+        String user=properties.getProperty("spring.datasource.username");
+        String password=properties.getProperty("spring.datasource.password");
         return DriverManager.getConnection(url,user,password);
     }
 }

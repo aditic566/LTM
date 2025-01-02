@@ -10,8 +10,9 @@ import com.wecp.progressive.service.WarehouseService;
 
 public class WarehouseServiceImplArraylist implements WarehouseService {
 
-        private static List<Warehouse> warehouseList=new ArrayList<>();
+    private static List<Warehouse> warehouseList=new ArrayList<>();
 
+    
     @Override
     public List<Warehouse> getAllWarehouses() {
         return warehouseList;
@@ -25,8 +26,14 @@ public class WarehouseServiceImplArraylist implements WarehouseService {
 
     @Override
     public List<Warehouse> getWarehousesSortedByCapacity() {
-       List<Warehouse> sortedWarehouse=warehouseList;
-        
+        List<Warehouse> sortedWarehouses=warehouseList;
+        sortedWarehouses.sort(Comparator.comparing(Warehouse::getCapacity));
+        return sortedWarehouses; 
     }
 
+    @Override
+    public void emptyArrayList(){
+        warehouseList=new ArrayList<>();
+    }
+    
 }
