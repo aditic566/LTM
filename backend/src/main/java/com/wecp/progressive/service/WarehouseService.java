@@ -10,24 +10,24 @@ public interface WarehouseService {
 
     int addWarehouse(Warehouse warehouse) throws SQLException;
 
-    List<Warehouse> getWarehousesSortedByCapacity()throws SQLException;
+    List<Warehouse> getWarehousesSortedByCapacity() throws SQLException;
 
-    default public void emptyArrayList() {
+    default public void emptyArrayList() throws SQLException {
     }
 
     //Do not implement these methods in WarehouseServiceImplArraylist.java class
-    default void updateWarehouse(Warehouse warehouse) {
+    default void updateWarehouse(Warehouse warehouse) throws SQLException {
     }
 
-    default void deleteWarehouse(int warehouseId) {
+    default void deleteWarehouse(int warehouseId) throws SQLException {
     }
 
-    default Warehouse getWarehouseById(int warehouseId) {
+    default Warehouse getWarehouseById(int warehouseId) throws SQLException {
         return null;
     }
 
     //Do not implement these methods in WarehouseServiceImplArraylist.java and WarehouseServiceImplJdbc.java class
-    default List<Warehouse> getWarehouseBySupplier(int supplierId) {
+    default List<Warehouse> getWarehouseBySupplier(int supplierId) throws SQLException {
         return null;
     }
 }

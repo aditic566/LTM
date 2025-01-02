@@ -4,12 +4,11 @@ import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.List;
 
-import com.wecp.progressive.config.DatabaseConnectionManager;
 import com.wecp.progressive.dao.SupplierDAO;
 import com.wecp.progressive.entity.Supplier;
 import com.wecp.progressive.service.SupplierService;
 
-public class SupplierServiceImplJdbc implements SupplierService {
+public class SupplierServiceImplJdbc implements SupplierService  {
 
     private SupplierDAO supplierDAO;
 
@@ -36,18 +35,18 @@ public class SupplierServiceImplJdbc implements SupplierService {
         return sortedSuppliers;
     }
 
-    // @Override
-    // public void updateSupplier(Supplier supplier) throws SQLException {
-    //     supplierDAO.updateSupplier(supplier);
-    // }
+    @Override
+    public void updateSupplier(Supplier supplier) throws SQLException {
+        supplierDAO.updateSupplier(supplier);
+    }
+    @Override
+    public void deleteSupplier(int supplierId) throws SQLException {
+        supplierDAO.deleteSupplier(supplierId);
+    }
 
-    // @Override
-    // public void deleteSupplier(int supplierId) throws SQLException {
-    //     supplierDAO.deleteSupplier(supplierId);
-    // }
-
-    // @Override
-    // public Supplier getSupplierById(int supplierId) throws SQLException {
-    //     return supplierDAO.getSupplierById(supplierId);
-    // }
+    @Override
+    public Supplier getSupplierById(int supplierId) throws SQLException {
+        return supplierDAO.getSupplierById(supplierId);
+    }
+    
 }
