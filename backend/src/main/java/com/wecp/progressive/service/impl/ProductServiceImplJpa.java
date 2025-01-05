@@ -2,6 +2,7 @@ package com.wecp.progressive.service.impl;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.springframework.stereotype.Service;
 
 //import com.wecp.progressive.dao.ProductDAO;
@@ -16,6 +17,18 @@ public class ProductServiceImplJpa implements ProductService  {
 
     public ProductServiceImplJpa (ProductRepository productRepository) {
         this.productRepository = productRepository;
+=======
+import com.wecp.progressive.dao.ProductDAO;
+import com.wecp.progressive.entity.Product;
+import com.wecp.progressive.service.ProductService;
+
+public class ProductServiceImplJpa implements ProductService  {
+
+    private ProductDAO productDAO;
+
+    public ProductServiceImplJpa (ProductDAO productDAO) {
+        this.productDAO = productDAO;
+>>>>>>> 4ad703be7cb45c426ce07d35587a657a0fb20c98
     }
    
     @Override
