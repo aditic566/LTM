@@ -1,6 +1,8 @@
 package com.wecp.progressive.controller;
 
 import com.wecp.progressive.entity.Supplier;
+import com.wecp.progressive.exception.SupplierAlreadyExistsException;
+import com.wecp.progressive.exception.SupplierDoesNotExistException;
 import com.wecp.progressive.service.impl.SupplierServiceImplArraylist;
 import com.wecp.progressive.service.impl.SupplierServiceImplJpa;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,8 @@ public class SupplierController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
+        }catch(SupplierDoesNotExistException e){
+            return new ResponseEntity<>("supplier doesnot exist",HttpStatus.BAD_REQUEST);
         } catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,6 +51,8 @@ public class SupplierController {
         try {
             int supplierId = supplierServiceImplJpa.addSupplier(supplier);
             return new ResponseEntity<>(supplierId, HttpStatus.CREATED);
+        }catch(SupplierAlreadyExistsException e){
+            return new ResponseEntity<>("supplier already exists",HttpStatus.BAD_REQUEST);
         } catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -58,6 +64,8 @@ public class SupplierController {
             supplier.setSupplierId(supplierId);
             supplierServiceImplJpa.updateSupplier(supplier);
             return new ResponseEntity<>(HttpStatus.OK);
+        }catch(SupplierAlreadyExistsException e){
+            return new ResponseEntity<>("supplier already exists",HttpStatus.BAD_REQUEST);
         } catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

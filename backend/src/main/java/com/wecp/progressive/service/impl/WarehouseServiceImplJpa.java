@@ -1,6 +1,7 @@
 package com.wecp.progressive.service.impl;
 
 import com.wecp.progressive.entity.Warehouse;
+import com.wecp.progressive.exception.NoWarehouseFoundForSupplierException;
 import com.wecp.progressive.repository.ProductRepository;
 import com.wecp.progressive.repository.WarehouseRepository;
 import com.wecp.progressive.service.WarehouseService;
@@ -59,6 +60,11 @@ public class WarehouseServiceImplJpa implements WarehouseService {
 
     @Override
     public List<Warehouse> getWarehouseBySupplier(int supplierId) throws SQLException {
-        return warehouseRepository.findAllBySupplier_SupplierId(supplierId);
+        List<Warehouse> warehouses= warehouseRepository.findAllBySupplier_SupplierId(supplierId);
+        if(warehouses != null && !(warehouses.isEmpty())){
+            return warehouses;
+        }else{
+            throw new NoWarehouseFoundForSupplierException("not found warehouse");
+        }
     }
 }

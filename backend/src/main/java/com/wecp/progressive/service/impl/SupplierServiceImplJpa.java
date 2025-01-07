@@ -2,6 +2,8 @@ package com.wecp.progressive.service.impl;
 
 
 import com.wecp.progressive.entity.Supplier;
+import com.wecp.progressive.exception.SupplierAlreadyExistsException;
+import com.wecp.progressive.exception.SupplierDoesNotExistException;
 import com.wecp.progressive.repository.ProductRepository;
 import com.wecp.progressive.repository.SupplierRepository;
 import com.wecp.progressive.repository.WarehouseRepository;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SupplierServiceImplJpa implements SupplierService {
@@ -37,7 +40,15 @@ public class SupplierServiceImplJpa implements SupplierService {
 
     @Override
     public int addSupplier(Supplier supplier) throws SQLException {
+        String name=supplier.getSupplierName();
+        String email=supplier.getEmail();
+        Optional<Supplier> newSupplier=supplierRepository.findBySupplierName(name);
+        Optional<Supplier> newEmail=supplierRepository.findByEmail(email);
+        if(newSupplier.isPresent() || newEmail.isPresent()){
+            throw new SupplierAlreadyExistsException("already exist supplier");
+        }
         return supplierRepository.save(supplier).getSupplierId();
+
     }
 
     @Override
@@ -49,6 +60,11 @@ public class SupplierServiceImplJpa implements SupplierService {
 
     @Override
     public void updateSupplier(Supplier supplier) throws SQLException {
+        String name=supplier.getSupplierName();
+        Optional<Supplier> newName=supplierRepository.findBySupplierName(name);
+        if(newName.isPresent()){
+            throw new SupplierAlreadyExistsException("already exists");
+        }
         supplierRepository.save(supplier);
     }
 
@@ -62,6 +78,11 @@ public class SupplierServiceImplJpa implements SupplierService {
 
     @Override
     public Supplier getSupplierById(int supplierId) throws SQLException {
-        return supplierRepository.findBySupplierId(supplierId);
+        Optional<Supplier> optionalSupplier=supplierRepository.findBySupplierId(supplierId);
+        if(optionalSupplier.isPresent()){
+            throw new SupplierDoesNotExistException("doesnot exists");
+        }else{
+            return optionalSupplier.get();
+        }
     }
 }

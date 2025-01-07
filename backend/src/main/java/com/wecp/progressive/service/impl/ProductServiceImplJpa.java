@@ -32,6 +32,7 @@ public class ProductServiceImplJpa  implements ProductService {
 
     @Override
     public int addProduct(Product product) throws SQLException {
+        
         return productRepository.save(product).getProductId();
     }
 
