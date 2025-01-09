@@ -15,6 +15,9 @@ public class ShipmentServiceImpl implements ShipmentService {
  
     @Autowired
     ShipmentRepository shipmentRepository;
+
+    @Autowired
+    InsuranceRepository insuranceRepository;
    
     @Override
     public List<Shipment> getAllShipments() throws SQLException {
@@ -23,7 +26,12 @@ public class ShipmentServiceImpl implements ShipmentService {
  
     @Override
     public Shipment getShipmentById(int shipmentId) throws SQLException {
-        return shipmentRepository.findByShipmentId(shipmentId);
+        Shipment shipment= shipmentRepository.findByShipmentId(shipmentId);
+        if(shipment==null){
+            return null;
+        }else{
+            return shipment;
+        }
     }
  
     @Override
@@ -38,6 +46,7 @@ public class ShipmentServiceImpl implements ShipmentService {
  
     @Override
     public void deleteShipment(int shipmentId) throws SQLException {
-        shipmentRepository.deleteById(shipmentId);
+        //shipmentRepository.deleteById(shipmentId);
+        insuranceRepository.deleteByShipmentId(shipmentId);
     }
 }

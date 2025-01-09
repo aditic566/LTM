@@ -21,11 +21,11 @@ public interface ShipmentRepository extends JpaRepository<Shipment, Integer>{
  
     @Modifying
     @Transactional
-    @Query("delete from Shipment p where  p.product.productId = :productId")
+    @Query("delete from Shipment p where p.product.productId = :productId")
     void deleteByProductId (int productId);
  
     @Modifying
     @Transactional
-    @Query("delete from Shipment p where  p.warehouse.supplier.supplierId = :supplierId")
+    @Query("delete from Shipment p where p.warehouse.supplier.supplierId = :supplierId")
     void deleteBySupplierId (int supplierId);
 }
