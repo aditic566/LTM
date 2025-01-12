@@ -11,3 +11,21 @@ registerUsername: it will not contain any special characters
 registerEmail: it will be a valid email
 registerPassword: it will be of atleast 8 characters 
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <script src="js/validation.js"></script>
+</head>
+<body>
+    <form id="Registeration Form">
+        <input type="text" id="registerName" placeholder="Enter the name" required>
+        <input type="text" id="registerEmail" placeholder="Enter the email id" required>
+        <input type="text" id="registerUsername" placeholder="Enter the username" required>
+        <input type="text" id="registerPassword" placeholder="Enter the password" required>
+        <button type="button" onclick="register()">Register</button>
+    </form>
+</body>
+</html>

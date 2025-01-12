@@ -41,8 +41,16 @@ public class SupplierServiceImplJpa implements SupplierService {
  
     @Override
     public int addSupplier(Supplier supplier) throws SQLException {
-        if(supplierRepository.findByEmail(supplier.getEmail()) != null && supplierRepository.findByUsername(supplier.getUsername()) != null)
-            throw new SupplierAlreadyExistsException("Supplier already exists with this email or username");
+        Supplier oldUser=supplierRepository.findByUsername(supplier.getUsername());
+        if(oldUser!=null){
+            throw new SupplierAlreadyExistsException("Supplier already exists with username: "+oldUser);
+        }
+        Supplier oldEmail=supplierRepository.findByEmail(supplier.getEmail());
+        if(oldEmail!=null){
+            throw new SupplierAlreadyExistsException("Supplier already exists with email: "+oldEmail);
+        }
+        // if(supplierRepository.findByEmail(supplier.getEmail()) != null && supplierRepository.findByUsername(supplier.getUsername()) != null)
+        //     throw new SupplierAlreadyExistsException("Supplier already exists with this email or username");
         return supplierRepository.save(supplier).getSupplierId();
     }
  
@@ -55,6 +63,15 @@ public class SupplierServiceImplJpa implements SupplierService {
  
     @Override
     public void updateSupplier(Supplier supplier) throws SQLException {
+        if(!supplier.getRole().isBlank()){
+            Supplier oldUser=supplierRepository.findByUsername(supplier.getUsername());
+            if(oldUser!=null && oldUser.getSupplierId()!=supplier.getSupplierId()){
+                throw new SupplierAlreadyExistsException("User Name is unavailable "+oldUser.getUsername());
+            }
+            if(!oldUser.getPassword().equals(supplier.getPassword())){
+                oldUser.setPassword(supplier.getPassword());
+            }
+        }
             supplierRepository.save(supplier);
     }
  
