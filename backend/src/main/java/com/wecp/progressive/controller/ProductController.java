@@ -1,28 +1,28 @@
 package com.wecp.progressive.controller;
- 
+
 import com.wecp.progressive.entity.Product;
 import com.wecp.progressive.service.impl.ProductServiceImplJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
- 
+
 import java.sql.SQLException;
 import java.util.List;
- 
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
- 
+
     @Autowired
     ProductServiceImplJpa productServiceImplJpa;
- 
+
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() throws SQLException {
         List<Product> products = productServiceImplJpa.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
- 
+
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable int productId) {
         try {
@@ -36,7 +36,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
- 
+
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestBody Product product) {
         try {
@@ -47,7 +47,7 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
- 
+
     @PutMapping("/{productId}")
     public ResponseEntity<Void> updateProduct(@PathVariable int productId, @RequestBody Product product) {
         try {
@@ -58,7 +58,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
- 
+
     @DeleteMapping("/{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable int productId) {
         try {
@@ -68,7 +68,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
- 
+
     @GetMapping("/warehouse/{warehouseId}")
     public ResponseEntity<List<Product>> getAllProductByWarehouse(@PathVariable int warehouseId) throws SQLException {
         List<Product> products = productServiceImplJpa.getAllProductByWarehouse(warehouseId);

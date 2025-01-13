@@ -1,32 +1,29 @@
 package com.wecp.progressive.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Insurance {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int insuranceId;
-    private String insuranceProvider;
-    private Long insuranceCoverageAmount;
 
-    @ManyToOne //(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "shipmentId")
     private Shipment shipment;
 
-    public Insurance(){}
+    private String insuranceProvider;
+    private Long insuranceCoverageAmount;
 
-    public Insurance(int insuranceId, String insuranceProvider, Long insuranceCoverageAmount, Shipment shipment) {
+    public Insurance() {
+    }
+
+    public Insurance(int insuranceId, Shipment shipment, String insuranceProvider, Long insuranceCoverageAmount) {
         this.insuranceId = insuranceId;
+        this.shipment = shipment;
         this.insuranceProvider = insuranceProvider;
         this.insuranceCoverageAmount = insuranceCoverageAmount;
-        this.shipment = shipment;
     }
 
     public int getInsuranceId() {
@@ -35,6 +32,14 @@ public class Insurance {
 
     public void setInsuranceId(int insuranceId) {
         this.insuranceId = insuranceId;
+    }
+
+    public Shipment getShipment() {
+        return shipment;
+    }
+
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
     }
 
     public String getInsuranceProvider() {
@@ -52,15 +57,4 @@ public class Insurance {
     public void setInsuranceCoverageAmount(Long insuranceCoverageAmount) {
         this.insuranceCoverageAmount = insuranceCoverageAmount;
     }
-
-    public Shipment getShipment() {
-        return shipment;
-    }
-
-    public void setShipment(Shipment shipment) {
-        this.shipment = shipment;
-    }
-
-    
-
 }

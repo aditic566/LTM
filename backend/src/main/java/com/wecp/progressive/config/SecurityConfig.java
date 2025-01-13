@@ -1,4 +1,5 @@
 package com.wecp.progressive.config;
+
 import com.wecp.progressive.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
     private final PasswordEncoder passwordEncoder;
+
     @Autowired
     public SecurityConfig(UserDetailsService userDetailsService,
                           JwtRequestFilter jwtRequestFilter,
@@ -30,6 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtRequestFilter = jwtRequestFilter;
         this.passwordEncoder = passwordEncoder;
     }
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
@@ -54,8 +58,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

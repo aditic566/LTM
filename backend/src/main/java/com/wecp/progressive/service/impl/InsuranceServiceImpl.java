@@ -1,6 +1,5 @@
 package com.wecp.progressive.service.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,39 +10,39 @@ import com.wecp.progressive.repository.InsuranceRepository;
 import com.wecp.progressive.service.InsuranceService;
 
 @Service
-public class InsuranceServiceImpl implements InsuranceService {
-
+public class InsuranceServiceImpl implements InsuranceService  {
+    
     @Autowired
     InsuranceRepository insuranceRepository;
 
     @Override
-    public List<Insurance> getAllInsurances() throws SQLException {
+    public List<Insurance> getAllInsurances() {
+        // TODO Auto-generated method stub
         return insuranceRepository.findAll();
     }
 
     @Override
-    public int addInsurance(Insurance insurance) throws SQLException {
+    public int addInsurance(Insurance insurance) {
+        // TODO Auto-generated method stub
         return insuranceRepository.save(insurance).getInsuranceId();
     }
 
     @Override
-    public Insurance getInsuranceById(int insuranceId) throws SQLException {
-        Insurance i= insuranceRepository.findByInsuranceId(insuranceId);
-        if(i==null){
-            return null;
-        }else{
-            return i;
-        }
+    public Insurance getInsuranceById(int insuranceId) {
+        // TODO Auto-generated method stub
+        return insuranceRepository.findById(insuranceId).orElse(null);
     }
 
     @Override
-    public void updateInsurance(Insurance insurance) throws SQLException {
+    public void updateInsurance(Insurance insurance) {
         insuranceRepository.save(insurance);
+        
     }
 
     @Override
-    public void deleteInsurance(int insuranceId) throws SQLException {
-        insuranceRepository.deleteByShipmentId(insuranceId);
+    public void deleteInsurance(int insuranceId) {
+        // TODO Auto-generated method stub
+        insuranceRepository.deleteById(insuranceId);
     }
 
 }
