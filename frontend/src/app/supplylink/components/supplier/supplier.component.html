@@ -1,0 +1,53 @@
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()" class="user-form">
+    <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" fromControlName="name" class="form-control">
+    <!-- <div *ngIf="supplierForm.get('supplierName')?.invalid && supplierForm.get('supplierName')?.touched">
+        <div *ngIf="supplierForm.get('supplierName').errors?.required">Name is required.</dib>
+    </div> -->
+    </div>
+
+    
+    <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    <!-- <div *ngIf="supplierForm.get('email')?.invalid && supplierForm.get('email')?.touched">
+        <div *ngIf="supplierForm.get('email').errors?.required">Email is required.</div>
+    </div> -->
+    </div>
+
+    <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username" class="form-control">
+    <!-- <div *ngIf="supplierForm.get('username')?.invalid && supplierForm.get('username')?.touched">
+        <div *ngIf="supplierForm.get('username').errors?.required">Username is required.</div>
+    </div> -->  
+    </div>
+
+    <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="text" id="password" formControlName="password" class="form-control">
+    <!-- <div *ngIf="supplierForm.get('password')?.invalid && supplierForm.get('password')?.touched">
+        <div *ngIf="supplierForm.get('password').errors?.required">Password is required.</div>
+    </div> -->
+    </div>  
+
+    <button type="submit">Create Supplier</button>
+
+    <ng-container >
+    <div *ngIf="supplierError$ | async as error" class="error">
+        {{ error }}
+    </div>
+    <div *ngIf="supplierSuccess$ | async as msg" class="success">
+        {{ msg }}
+    </div>
+</ng-container>
+</form>
+
+<!-- <div *ngIf="supplierForm.valid && supplierForm.submitted">
+    <p>Name: {{ supplierForm.value.supplierName }}</p>
+    <p>Email: {{ supplierForm.value.email }}</p>
+    <p>Username: {{ supplierForm.value.username }}</p>
+    <p>Password: {{ supplierForm.value.password }}</p>
+
+</div> -->
