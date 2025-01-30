@@ -1,0 +1,21 @@
+<form [formGroup]="warehouseForm" (ngSubmit)="onSubmit()">
+    <label for="warehouseId">Warehouse ID:</label>
+    <input type="number" id="warehouseId" formControlName="warehouseId">
+
+    <label for="supplierId">Supplier ID:</label>
+    <input type="number" id="supplierId" formControlName="supplierId">
+
+    <label for="warehouseName">Warehouse Name:</label>
+    <input type="text" id="warehouseName" formControlName="warehouseName" >
+   
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" formControlName="location">
+
+    <label for="capacity">Capacity:</label>
+    <input type="number" id="capacity" formControlName="capacity" >
+ 
+
+    <button type="submit">Submit</button>
+</form>
+

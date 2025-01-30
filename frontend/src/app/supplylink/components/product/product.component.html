@@ -1,0 +1,36 @@
+<form productForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="productId">Product Id:</label>
+    <input type="number" id="productId" formControlName="productId">
+
+    <label for="warehouseId">Warehouse Id:</label>
+    <input type="text" id="warehouseId" formControlName="warehouseId">
+    <!-- <div *ngIf="warehouseForm.get('warehouseId')?.touched && warehouseForm.get('warehouseId')?.invalid">
+        <div *ngIf="warehouseForm.get('warehouseId')?.errors?.required">Warehouse Id is required.</div>
+        <div *ngIf="warehouseForm.get('warehouseId')?.errors?.min">Warehouse Id should be non-negative.</div>
+    </div> -->
+
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" formControlName="productName" >
+    <!-- <div *ngIf="warehouseForm.get('productName')?.touched && warehouseForm.get('productName')?.invalid">
+        <div *ngIf="warehouseForm.get('productName')?.errors?.required">Product Name is required.</div>
+    </div> -->
+
+    <label for="productDescription">Product Description:</label>
+    <input type="text" id="productDescription" formControlName="productDescription">
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" formControlName="quantity">
+    <!-- <div *ngIf="warehouseForm.get('quantity')?.touched && warehouseForm.get('warehouseId')?.invalid">
+        <div *ngIf="warehouseForm.get('quantity')?.errors?.required">Quantity is required.</div>
+        <div *ngIf="warehouseForm.get('quantity')?.errors?.min">Quantity should be non-negative.</div>
+    </div> -->
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" formControlName="price">
+    <!-- <div *ngIf="warehouseForm.get('price')?.touched && warehouseForm.get('price')?.invalid">
+        <div *ngIf="warehouseForm.get('price')?.errors?.required">Price is required.</div>
+        <div *ngIf="warehouseForm.get('price')?.errors?.min">Price should be non-negative.</div>
+    </div> -->
+
+    <button type="submit">Submit</button>
+</form>
