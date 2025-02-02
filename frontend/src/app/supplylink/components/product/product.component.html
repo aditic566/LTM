@@ -1,36 +1,43 @@
-<form productForm="ngForm" (ngSubmit)="onSubmit()">
-    <label for="productId">Product Id:</label>
-    <input type="number" id="productId" formControlName="productId">
+<app-navbar></app-navbar>
+<form (ngSubmit)="onSubmit()" [formGroup]="productForm" class="user-form">
+    <div>
+        <label for="warehouseId">Warehouse ID</label>
+        <input id="warehouseId" formControlName="warehouseId" type="text" />
+        <div *ngIf="productForm.get('warehouseId')?.touched && productForm.get('warehouseId')?.invalid">
+          <div class="text-red" *ngIf="productForm.get('warehouseId')?.errors?.required">
+            Warehouse ID is required.
+          </div>
+          <div class="text-red" *ngIf="productForm.get('warehouseId')?.errors?.min">
+            Warehouse ID must be greater then 0.
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" formControlName="productName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="productDescription">Product Description:</label>
+        <input type="text" id="productDescription" formControlName="productDescription" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity :</label>
+        <input type="number" id="quantity" formControlName="quantity" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="price">Price :</label>
+        <input type="number" id="price" formControlName="price" class="form-control" />
+    </div>
 
-    <label for="warehouseId">Warehouse Id:</label>
-    <input type="text" id="warehouseId" formControlName="warehouseId">
-    <!-- <div *ngIf="warehouseForm.get('warehouseId')?.touched && warehouseForm.get('warehouseId')?.invalid">
-        <div *ngIf="warehouseForm.get('warehouseId')?.errors?.required">Warehouse Id is required.</div>
-        <div *ngIf="warehouseForm.get('warehouseId')?.errors?.min">Warehouse Id should be non-negative.</div>
-    </div> -->
+    <button type="submit" class="btn-submit">Create Product</button>
 
-    <label for="productName">Product Name:</label>
-    <input type="text" id="productName" formControlName="productName" >
-    <!-- <div *ngIf="warehouseForm.get('productName')?.touched && warehouseForm.get('productName')?.invalid">
-        <div *ngIf="warehouseForm.get('productName')?.errors?.required">Product Name is required.</div>
-    </div> -->
+    <ng-container>
+        <div *ngIf="(productError$ | async) as productError" class="error">
+            {{ productError }}
+          </div>
+          <div *ngIf="(productSuccess$ | async) as productSuccess" class="success">
+            {{ productSuccess }}
+          </div>
+    </ng-container>
 
-    <label for="productDescription">Product Description:</label>
-    <input type="text" id="productDescription" formControlName="productDescription">
-
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" formControlName="quantity">
-    <!-- <div *ngIf="warehouseForm.get('quantity')?.touched && warehouseForm.get('warehouseId')?.invalid">
-        <div *ngIf="warehouseForm.get('quantity')?.errors?.required">Quantity is required.</div>
-        <div *ngIf="warehouseForm.get('quantity')?.errors?.min">Quantity should be non-negative.</div>
-    </div> -->
-
-    <label for="price">Price:</label>
-    <input type="number" id="price" formControlName="price">
-    <!-- <div *ngIf="warehouseForm.get('price')?.touched && warehouseForm.get('price')?.invalid">
-        <div *ngIf="warehouseForm.get('price')?.errors?.required">Price is required.</div>
-        <div *ngIf="warehouseForm.get('price')?.errors?.min">Price should be non-negative.</div>
-    </div> -->
-
-    <button type="submit">Submit</button>
 </form>
