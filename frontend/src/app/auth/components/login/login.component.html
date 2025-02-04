@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
     <label>
         Username:
@@ -7,6 +8,13 @@
           loginForm.controls['username'].errors &&
           loginForm.controls['username'].errors['required']
         ">
+=======
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form"></form>
+    <label>
+        Username:
+        <input type="text" formControlName="username" />
+        <p class="error" *ngIf="loginForm.controls['username']['touched'] && loginForm.controls['username'].errors && loginForm.controls['username'].errors['required']">
+>>>>>>> 8351afc1423865327955609d48f17be0b494154f
             Username is required
         </p>
     </label>
@@ -14,18 +22,26 @@
     <label>
         Password:
         <input type="password" formControlName="password" />
+<<<<<<< HEAD
         <p class="error" *ngIf="
           loginForm.controls['password']['touched'] &&
           loginForm.controls['password'].errors &&
           loginForm.controls['password'].errors['required']
         ">
+=======
+        <p class="error" *ngIf=" loginForm.controls['password']['touched'] && loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']">
+>>>>>>> 8351afc1423865327955609d48f17be0b494154f
             Password is required
         </p>
     </label>
   
     <button type="submit">Log in</button>
     <a routerLink="/auth/add-user" class="task-list" class="task-list">Sign up</a>
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 8351afc1423865327955609d48f17be0b494154f
     <div *ngIf="errorMessage" class="error">
         <p>{{ errorMessage }}</p>
     </div>

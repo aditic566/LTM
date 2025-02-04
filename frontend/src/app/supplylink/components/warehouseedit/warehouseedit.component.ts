@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from "@angular/core";
 import { Warehouse } from '../../types/Warehouse';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -90,3 +91,11 @@ export class WarehouseEditComponent implements OnInit {
         }
     }
 }
+=======
+
+export class WarehouseEditComponent  {
+  
+  
+
+}
+>>>>>>> 8351afc1423865327955609d48f17be0b494154f

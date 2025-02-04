@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
 export class AuthComponent  {
   constructor() {}
 
+=======
+
+export class AuthComponent  {
+>>>>>>> 8351afc1423865327955609d48f17be0b494154f
   
 }

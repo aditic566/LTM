@@ -10,6 +10,7 @@ import { AuthService } from "./auth/services/auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+<<<<<<< HEAD
   constructor(private authService: AuthService) { }
   intercept(
     request: HttpRequest<any>,
@@ -34,4 +35,17 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request);
   }
+=======
+  constructor(private authService:AuthService){}
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if(req.url.includes('/login') || req.url.includes('/register')){
+      return next.handle(req);
+    }
+    const token=localStorage.getItem('token');
+    req=req.clone({
+      headers:req.headers.set('Authorization','bearer'+token)});
+      return next.handle(req);
+  }
+  
+>>>>>>> 8351afc1423865327955609d48f17be0b494154f
 }
