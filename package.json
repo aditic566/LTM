@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/cli": "^19.1.5",
+    "protractor": "^7.0.0"
+  }
+}
